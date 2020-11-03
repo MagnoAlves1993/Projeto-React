@@ -23,7 +23,7 @@ Para o projeto foi utilizado:
 - react.js
 - sass
 
-#Pontos de melhoria
+# Pontos de melhoria
 Gostaria de deixar um feedback sobre o projeto?
 Fique a vontade para entrar em contato comigo
 
