@@ -1,25 +1,65 @@
-import logo from './logo.svg';
+import React, { Component } from 'react'
+import { Route } from 'react-router-dom';
+import Home from './templates/Home'
+import MovieInfo from './templates/MovieInfo'
+import * as movieAPI from './utils/movieAPI'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export default class App extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      movies: [],
+      movieInformation: [],
+    }
+    this.searchMovieById = this.searchMovieById.bind(this)
+    this.searchMovieByTitle = this.searchMovieByTitle.bind(this);
+  }
+  
 
-export default App;
+
+  searchMovieByTitle(movieTitle, lengthMaxMovies = 6){
+    movieAPI.getMovie(movieTitle).then(listMovies => {
+      let listMoviesLimit = ''
+      let count = 0
+      if(!!(listMoviesLimit.includes(this.state.movies) && listMovies.Response !== "False")){
+        listMoviesLimit = listMovies.Search.slice(0,lengthMaxMovies)
+      }else if(listMovies.Response !== "False"){
+        count += lengthMaxMovies
+        listMoviesLimit = listMovies.Search.slice(0,lengthMaxMovies+count)
+      } else{
+        listMoviesLimit = undefined
+      }
+      this.setState({ movies: listMoviesLimit })
+    })
+  }
+
+  searchMovieById(id){
+    movieAPI.getInfoMovieById(id).then(movieInfo => {
+      this.setState({ movieInformation:  movieInfo})
+    })
+  }
+
+  render(){
+    return (
+      <div className="app">
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <Home 
+              onSearchMovie={this.searchMovieByTitle}
+              movies={this.state.movies}
+              />
+          )}
+        />
+        <Route
+          path="/movie"
+          render={() => (
+            <MovieInfo onSearchMovieById={this.searchMovieById} movieInfo={this.state.movieInformation}/>
+          )}
+        />
+      </div>
+    )
+  }
+}

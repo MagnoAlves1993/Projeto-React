@@ -1,0 +1,262 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+$fullSize: 100%;
+$b2wColorGreen: #02ecc2;
+$breakpoint-desktop: 768px;
+
+html {
+    height: $fullSize;
+    overflow:auto;
+}
+
+
+body {
+  background: #f1f1f1;
+  height: $fullSize;
+  font-family: 'Poppins', sans-serif;
+}
+
+ul {
+    list-style-type: none;
+    padding: 1em;
+    text-align: start;
+}
+
+a { 
+    color: inherit; 
+    text-decoration: none;
+} 
+
+.btn-back{
+    margin: 10px;
+    border: none;
+    background: green;
+    padding: 10px 35px;
+    border-radius: 15px;
+    color:white;
+}
+
+  #root{
+    height: $fullSize;
+
+      .app{
+        height: $fullSize;
+
+        .home {
+            height: $fullSize;
+            
+            .clicked-container{
+                animation: animateToTop 2s forwards;
+            }
+
+            .containers-search{
+                height: $fullSize;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                align-content: center;
+                width: 70%;
+                margin: auto;
+                align-items: center;
+                font-size: 10px;
+
+                h1{
+                    display: flex;
+
+                    .title-project{
+                        color: $b2wColorGreen;
+                        display: flex
+                    }
+    
+                    .title-w{
+                        display: block;
+                        transform: rotate(0deg);
+                    }
+
+                    .clicked-letter{
+                        animation: rotateLetter 2s forwards;
+                    }
+                }
+
+                .search-form{
+
+                    input{
+                        border: none;
+                        padding: 10px;
+                        border-radius: 15px 0 0 15px;
+                    }
+                    button{
+                        border-radius: 0 15px 15px 0;
+                        padding: 10px;
+                        background:$b2wColorGreen;
+                        border:none;
+                    }
+                }
+            }
+
+            .container-listing{
+                text-align: center;
+                background: white;
+                border-radius: 75px 75px 0 0;
+                
+
+                .grid-listing{
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    overflow-y: scroll;
+                    height: 100%;
+
+                    .card-movie{
+                        position: relative;
+
+                        img{
+                            width: 80%;
+                            border-radius: 15px;
+                        }
+
+                        .tooltip-movie{
+                            position: absolute;
+                            background: linear-gradient(#2bc7ed, $b2wColorGreen);
+                            border-radius: 15px;
+                            color:white;
+                            width: 60%;
+                            font-size:12px;
+                        }
+                        
+                    }
+                }
+            }
+        }
+        .container{
+            background: #f1f1f1;
+            height: $fullSize;
+
+            .container-movie-info{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                align-items: center;
+
+                .image-poster{
+                    width: 100%;
+                    position: relative;
+                    text-align: center;
+
+                    .image-background{
+                        position: absolute;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        filter: blur(8px);
+                        -webkit-filter: blur(8px);
+                        width:100%;
+                        z-index: 2;
+                        height: 285px;
+                    }
+
+                    img{
+                        position: relative;
+                        border-radius: 15px;
+                        width: 190px;
+                        z-index: 2;
+                        filter: blur(0);
+                        height: 285px;
+                        object-fit: cover;
+                    }
+                }
+
+                .movie-info {
+                    width: 100%;
+
+                    .box-info {
+                        background: white;
+                        padding: 10px;
+                        margin: 10px;
+                        border-radius: 15px;
+                        box-shadow: 10px 10px 10px -10px grey;
+
+                        h2{
+                            text-align: center;
+                        }
+    
+                        .firstInformation{
+                            color: gray;
+                            font-size: 10px;
+                        }
+                    }
+
+                    
+                }
+            }
+        }
+      }
+  }
+:focus {
+outline: 0;
+outline-color: transparent;
+outline-style: none;
+}
+
+@media (min-width: $breakpoint-desktop) {
+    #root .app .home .containers-search{
+        width: 30%;
+    }
+    #root .app .home .clicked-container{
+        animation: animateToTopDesktop 2s forwards;
+    }
+
+    #root .app .home .container-listing .grid-listing{
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    #root .app .home .container-listing .grid-listing .card-movie img {
+        width: 60%;
+        min-height: 276px;
+        object-fit: cover;
+    }
+    #root .app .container .container-movie-info .image-poster .image-background{
+        height: 447px;
+    }
+    #root .app .container .container-movie-info .image-poster img{
+        width: 300px;
+        height: 447px;
+    }
+
+    #root .app .container .container-movie-info .movie-info {
+        width: 60%;
+    }
+    
+}
+
+@keyframes animateToTop{
+    1%{
+    height: 100%;
+    width: 70%;
+    }
+    100%{
+    height: 10%;
+    font-size: 10px;
+    width: 100%;
+    }
+}
+
+@keyframes animateToTopDesktop{
+    1%{
+        height: 100%;
+        width: 30%;
+    }
+    100%{
+        height: 10%;
+        font-size: 10px;
+        width: 100%;
+    }
+}
+
+@keyframes rotateLetter{
+    1%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(-180deg);
+        color: black
+    }
+}
