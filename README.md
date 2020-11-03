@@ -7,8 +7,8 @@ Recomendamos a utilização das seguintes versões:
 - Node ^12.16.3
 - NPM ^6.13.6
 
-#Instalação
-Para instalar todas as dependencias do projeto, utilize o seguinte comando: 
+# Instalação
+Para instalar todas as dependências do projeto, utilize o seguinte comando: 
 ```sh
 npm install
 ```
@@ -18,7 +18,7 @@ npm run start
 ```
 O projeto iniciará em [http://localhost:3000](http://localhost:3000)
 
-#Técnologia
+# Tecnologia
 Para o projeto foi utilizado:
 - react.js
 - sass
